@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipidex - Mezinárodní doprava z USA do celého světa</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; overflow-x: hidden; }
+        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 100px 0; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,1000 1000,0 1000,1000"/></svg>'); pointer-events: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); animation: slideInDown 1s ease-out; }
+        .hero p { font-size: 1.3rem; margin-bottom: 30px; animation: slideInUp 1s ease-out 0.3s both; }
+        .cta-button { display: inline-block; background: linear-gradient(45deg, #ff6b6b, #feca57); color: white; padding: 15px 40px; text-decoration: none; border-radius: 50px; font-size: 1.2rem; font-weight: bold; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.2); animation: slideInUp 1s ease-out 0.6s both; }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+        .services { padding: 80px 0; background: #f8f9fa; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 60px; color: #2c3e50; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-bottom: 60px; }
+        .service-card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; transition: all 0.3s ease; border: 2px solid transparent; }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); border-color: #667eea; }
+        .service-icon { width: 80px; height: 80px; margin: 0 auto 20px; background: linear-gradient(45deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+        .info-section { padding: 80px 0; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        .info-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-left: 5px solid #667eea; }
+        .info-card h3 { color: #2c3e50; margin-bottom: 20px; font-size: 1.5rem; }
+        .info-card ul { list-style: none; padding-left: 0; }
+        .info-card li { padding: 8px 0; border-bottom: 1px solid #eee; position: relative; padding-left: 25px; }
+        .info-card li:before { content: '✓'; position: absolute; left: 0; color: #27ae60; font-weight: bold; }
+        .pricing-tip { background: linear-gradient(135deg, #ffeaa7, #fab1a0); padding: 40px; border-radius: 20px; margin: 40px 0; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .pricing-tip h3 { color: #2d3436; margin-bottom: 15px; font-size: 1.8rem; }
+        .contact { background: linear-gradient(135deg, #2c3e50, #34495e); color: white; padding: 80px 0; text-align: center; }
+        .contact-info { background: rgba(255,255,255,0.1); padding: 40px; border-radius: 20px; backdrop-filter: blur(10px); display: inline-block; }
+        .phone { font-size: 2rem; font-weight: bold; color: #feca57; text-decoration: none; transition: all 0.3s ease; }
+        .phone:hover { transform: scale(1.05); text-shadow: 0 0 20px rgba(254,202,87,0.5); }
+        .footer { background: #1a1a1a; color: white; padding: 40px 0; text-align: center; }
+        .tabs { display: flex; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; gap: 10px; }
+        .tab { background: #667eea; color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer; transition: all 0.3s ease; font-size: 1rem; }
+        .tab:hover, .tab.active { background: #764ba2; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.5s ease-in; }
+        @keyframes slideInDown { from { opacity: 0; transform: translate3d(0, -100%, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+        @keyframes slideInUp { from { opacity: 0; transform: translate3d(0, 100%, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .warning-box { background: #ff7675; color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .success-box { background: #00b894; color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+
+        /* --- Kalkulačka --- */
+        .calc-section { padding: 80px 0; background: #ffffff; }
+        .calc-card { background: #ffffff; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); padding: 30px; border: 2px solid transparent; }
+        .calc-card:hover { border-color: #667eea; }
+        .unit-toggle { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 20px; }
+        .chip { background: #f1f3f5; border-radius: 999px; padding: 8px 14px; cursor: pointer; user-select: none; }
+        .chip.active { background: #667eea; color: #fff; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+        .input-group label { font-weight: 600; color: #2c3e50; display: block; margin-bottom: 6px; }
+        .input-group input, .input-group select { width: 100%; padding: 12px 14px; border: 1px solid #e5e7eb; border-radius: 12px; outline: none; transition: border .2s; font-size: 1rem; background: #fff; }
+        .input-group input:focus, .input-group select:focus { border-color: #667eea; }
+        .hint { font-size: .9rem; color: #6b7280; margin-top: 6px; }
+        .results { margin-top: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+        .result-box { background: linear-gradient(135deg, #667eea10, #764ba210); border: 1px solid #e5e7eb; border-left: 5px solid #667eea; border-radius: 14px; padding: 18px; }
+        .result-box h4 { margin-bottom: 8px; color: #2c3e50; }
+        .result-value { font-size: 1.6rem; font-weight: 800; color: #111827; }
+        .result-sub { font-size: .95rem; color: #6b7280; margin-top: 4px; }
+        .tiny { font-size: .85rem; color: #6b7280; margin-top: 10px; }
+        .note { margin-top: 16px; background: #fff9db; border: 1px solid #ffe066; padding: 12px 14px; border-radius: 10px; font-size: .95rem; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .services-grid, .info-grid { grid-template-columns: 1fr; }
+            .tabs { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <h1>SHIPIDEX</h1>
+            <p>Profesionální mezinárodní doprava z USA do celého světa</p>
+            <p>Balíčky • Automobily • Kontejnery • Konsolidace</p>
+            <a href="#contact" class="cta-button">Kontaktovat nás</a>
+        </div>
+    </header>
+
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Naše služby</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📦</div>
+                    <h3>Balíčky a zásilky</h3>
+                    <p>Rychlé a bezpečné doručení balíčků do České republiky, Slovenska, Polska a Maďarska. Konsolidace více zásilek pro úsporu nákladů.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚗</div>
+                    <h3>Přeprava automobilů</h3>
+                    <p>Profesionální přeprava osobních i užitkových vozidel z USA. Zajišťujeme kompletní administrativu a pojištění.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚢</div>
+                    <h3>Kontejnerová přeprava</h3>
+                    <p>Přeprava celých kontejnerů pro větší zásilky. Možnost LCL (částečné naplnění) i FCL (celý kontejner).</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛒</div>
+                    <h3>Nákup a konsolidace</h3>
+                    <p>Nakoupíme za vás zboží v USA a sloučíme více zásilek do jedné pro maximální úsporu nákladů.</p>
+                </div>
+            </div>
+
+            <div class="pricing-tip">
+                <h3>💡 TIP pro nejlepší cenu</h3>
+                <p><strong>Při zadávání rozměrů použijte vzorec: V × Š × D ÷ 139 = hmotnost v lb</strong></p>
+                <p>Tento výpočet vám pomůže získat co nejlepší cenu za přepravu podle objemové hmotnosti.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🔢 KALKULAČKA HMOTNOSTI -->
+    <section class="calc-section" id="kalkulacka">
+        <div class="container">
+            <h2 class="section-title">Kalkulačka dimenzionální (účtované) hmotnosti</h2>
+            <div class="calc-card">
+                <div class="unit-toggle" role="group" aria-label="Volba jednotek">
+                    <span>Jednotky rozměrů:</span>
+                    <button type="button" class="chip active" data-unit="in">palce (in)</button>
+                    <button type="button" class="chip" data-unit="cm">centimetry (cm)</button>
+                </div>
+
+                <div class="grid-2">
+                    <div class="input-group">
+                        <label for="len">Délka</label>
+                        <input id="len" type="number" min="0" step="0.01" placeholder="např. 20">
+                        <div class="hint" id="len-hint">v palcích (in)</div>
+                    </div>
+                    <div class="input-group">
+                        <label for="wid">Šířka</label>
+                        <input id="wid" type="number" min="0" step="0.01" placeholder="např. 16">
+                        <div class="hint" id="wid-hint">v palcích (in)</div>
+                    </div>
+                    <div class="input-group">
+                        <label for="hei">Výška</label>
+                        <input id="hei" type="number" min="0" step="0.01" placeholder="např. 12">
+                        <div class="hint" id="hei-hint">v palcích (in)</div>
+                    </div>
+                    <div class="input-group">
+                        <label for="act">Skutečná hmotnost (nepovinné)</label>
+                        <div style="display:flex; gap:8px;">
+                            <input id="act" type="number" min="0" step="0.01" placeholder="např. 24">
+                            <select id="act-unit" aria-label="Jednotka skutečné hmotnosti">
+                                <option value="lb" selected>lb</option>
+                                <option value="kg">kg</option>
+                            </select>
+                        </div>
+                        <div class="hint">Když vyplníte, ukážeme i účtovanou hmotnost (vyšší z obou).</div>
+                    </div>
+                </div>
+
+                <div class="results">
+                    <div class="result-box">
+                        <h4>Dimenzionální hmotnost</h4>
+                        <div class="result-value"><span id="dim-lb">0.00</span> lb</div>
+                        <div class="result-sub">= <span id="dim-kg">0.00</span> kg</div>
+                        <div class="tiny">Vzorec: (D × Š × V) ÷ 139 (v palcích)</div>
+                    </div>
+                    <div class="result-box">
+                        <h4>Skutečná hmotnost</h4>
+                        <div class="result-value"><span id="act-lb-out">—</span></div>
+                        <div class="result-sub" id="act-kg-out">—</div>
+                        <div class="tiny">Vyplňte skutečnou hmotnost pro porovnání</div>
+                    </div>
+                    <div class="result-box">
+                        <h4>Účtovaná hmotnost</h4>
+                        <div class="result-value"><span id="bill-lb">—</span></div>
+                        <div class="result-sub" id="bill-kg">—</div>
+                        <div class="tiny">Dopravci účtují vyšší z dimenzionální vs. skutečné.</div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    Tip: Pokud zadáváte v centimetrech, rozměry se automaticky převedou na palce a použije se stejný dělitel <strong>139</strong> (mezinárodní letecké tarify). U některých dopravců se mohou lišit pravidla; pro přesnou cenu nám napište.
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /KALKULAČKA -->
+
+    <section class="info-section">
+        <div class="container">
+            <h2 class="section-title">Užitečné informace</h2>
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('baleni')">Balení zásilek</button>
+                <button class="tab" onclick="showTab('oznaceni')">Označení</button>
+                <button class="tab" onclick="showTab('zakaz')">Co nelze poslat</button>
+                <button class="tab" onclick="showTab('cla')">Cla a daně</button>
+                <button class="tab" onclick="showTab('zeme')">Země doručení</button>
+            </div>
+
+            <div id="baleni" class="tab-content active">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>🎯 Správné zabalení</h3>
+                        <ul>
+                            <li>Používejte kvalitní kartonové krabice</li>
+                            <li>Křehké předměty zabalte do bublinové fólie</li>
+                            <li>Vyplňte prázdné místo výplňovým materiálem</li>
+                            <li>Těžké předměty umístěte na dno</li>
+                            <li>Krabici důkladně přelepte lepicí páskou</li>
+                            <li>Maximální váha balíčku: 30 kg</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>📏 Rozměry a hmotnost</h3>
+                        <ul>
+                            <li>Změřte délku, šířku a výšku v cm</li>
+                            <li>Vypočítejte objemovou hmotnost: V×Š×D÷139</li>
+                            <li>Zvážte skutečnou hmotnost</li>
+                            <li>Účtuje se vyšší z obou hodnot</li>
+                            <li>Maximální rozměr jedné strany: 120 cm</li>
+                            <li>Celkový obvod max: 300 cm</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="oznaceni" class="tab-content">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>🏷️ Označení balíčků</h3>
+                        <ul>
+                            <li>Napište adresu příjemce i odesilatele</li>
+                            <li>Používejte pouze latinku (bez diakritiky)</li>
+                            <li>Uveďte telefonní číslo příjemce</li>
+                            <li>Přilepte štítek na rovnou plochu</li>
+                            <li>Chraňte štítek před vlhkostí</li>
+                            <li>Nelepte přes rohy nebo spoje krabice</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>📋 Dokumenty</h3>
+                        <ul>
+                            <li>Prohlášení o obsahu balíčku</li>
+                            <li>Faktura nebo doklad o hodnotě</li>
+                            <li>Kopie průkazu totožnosti</li>
+                            <li>Případné certifikáty (elektronika)</li>
+                            <li>Vše v angličtině nebo s překladem</li>
+                            <li>Přiložte do obálky na krabici</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="zakaz" class="tab-content">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>❌ Zakázané předměty</h3>
+                        <ul>
+                            <li>Hořlavé a výbušné látky</li>
+                            <li>Chemikálie a kyseliny</li>
+                            <li>Zbraně a munice</li>
+                            <li>Peníze a cenné papíry</li>
+                            <li>Návykové látky</li>
+                            <li>Potraviny podléhající zkáze</li>
+                            <li>Živé rostliny a zvířata</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>⚠️ Omezené předměty</h3>
+                        <ul>
+                            <li>Elektronika - nutný CE certifikát</li>
+                            <li>Kosmetika - max 100ml/ks</li>
+                            <li>Alkohol - pouze osobní potřeba</li>
+                            <li>Léky - pouze na předpis</li>
+                            <li>Tabákové výrobky - limit 200 cigaret</li>
+                            <li>Šperky - pojištění doporučeno</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="cla" class="tab-content">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>💰 Cla a daně v ČR</h3>
+                        <ul>
+                            <li>Do 22 EUR - bez poplatků</li>
+                            <li>22-150 EUR - pouze DPH 21%</li>
+                            <li>Nad 150 EUR - clo + DPH</li>
+                            <li>Clo obvykle 0-10% dle typu zboží</li>
+                            <li>Elektronika: 0% clo, 21% DPH</li>
+                            <li>Oblečení: 8-12% clo, 21% DPH</li>
+                            <li>Administrativa: 50-150 Kč</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>📊 Ostatní země V4</h3>
+                        <ul>
+                            <li><strong>Slovensko:</strong> Stejné jako ČR (EU pravidla)</li>
+                            <li><strong>Polsko:</strong> 23% DPH, podobné clo</li>
+                            <li><strong>Maďarsko:</strong> 27% DPH, podobné clo</li>
+                            <li>Všechny země EU: limit 22 EUR bez poplatků</li>
+                            <li>Administrativní poplatek 25-150 EUR</li>
+                            <li>Možnost předplacení cel a DPH</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Důležité:</strong> Hodnota zboží musí být pravdivě uvedena. Falešné údaje mohou vést k pokutě nebo konfiskaci zásilky.
+                </div>
+            </div>
+
+            <div id="zeme" class="tab-content">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>🇪🇺 Prioritní země</h3>
+                        <ul>
+                            <li>Česká republika - 7-14 dní</li>
+                            <li>Slovensko - 7-14 dní</li>
+                            <li>Polsko - 8-15 dní</li>
+                            <li>Maďarsko - 8-15 dní</li>
+                            <li>Nejlepší ceny a nejrychlejší doručení</li>
+                            <li>Možnost sledování zásilek</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>🌍 Další země</h3>
+                        <ul>
+                            <li>Německo, Rakousko - 10-18 dní</li>
+                            <li>Francie, Itálie - 12-20 dní</li>
+                            <li>Velká Británie - 14-21 dní</li>
+                            <li>Ostatní EU země - 10-25 dní</li>
+                            <li>Závisí na celních procedurách</li>
+                            <li>Kontaktujte nás pro konkrétní zemi</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="success-box">
+                    <strong>✅ Nejčastější destinace:</strong> Česká republika (40%), Slovensko (25%), Polsko (20%), Maďarsko (15%)
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Kontaktujte nás</h2>
+            <div class="contact-info">
+                <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                    Máte zájem o odeslání balíčku nebo potřebujete více informací?<br>
+                    Neváhejte nás kontaktovat!
+                </p>
+                <a href="tel:7542629592" class="phone">📞 754-262-9592</a>
+                <p style="margin-top: 20px; opacity: 0.9;">
+                    Volejte kdykoliv nebo nám napište SMS<br>
+                    Odpovídáme rychle a profesionálně
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Shipidex.com - Spolehlivá mezinárodní doprava z USA</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">
+                Specializujeme se na doručení do České republiky, Slovenska, Polska a Maďarska
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function showTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Intersection animation for service cards
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        /* ------------------------------
+           KALKULAČKA – logika
+        ------------------------------ */
+        (function(){
+            const unitChips = document.querySelectorAll('.chip[data-unit]');
+            const len = document.getElementById('len');
+            const wid = document.getElementById('wid');
+            const hei = document.getElementById('hei');
+            const act = document.getElementById('act');
+            const actUnit = document.getElementById('act-unit');
+
+            const dimLbEl = document.getElementById('dim-lb');
+            const dimKgEl = document.getElementById('dim-kg');
+            const actLbOut = document.getElementById('act-lb-out');
+            const actKgOut = document.getElementById('act-kg-out');
+            const billLbEl = document.getElementById('bill-lb');
+            const billKgEl = document.getElementById('bill-kg');
+
+            const hints = {
+                len: document.getElementById('len-hint'),
+                wid: document.getElementById('wid-hint'),
+                hei: document.getElementById('hei-hint'),
+            };
+
+            let dimUnit = 'in'; // default inches
+
+            const cmToIn = v => v / 2.54;
+            const kgToLb = v => v * 2.20462262185;
+            const lbToKg = v => v / 2.20462262185;
+
+            function parse(v){
+                const n = parseFloat(v);
+                return isFinite(n) ? n : 0;
+            }
+
+            function updateHints(){
+                const txt = dimUnit === 'in' ? 'v palcích (in)' : 'v centimetrech (cm)';
+                hints.len.textContent = txt;
+                hints.wid.textContent = txt;
+                hints.hei.textContent = txt;
+            }
+
+            function compute(){
+                let L = parse(len.value), W = parse(wid.value), H = parse(hei.value);
+
+                // Převeď rozměry na palce, ať můžeme použít dělitel 139
+                if (dimUnit === 'cm') {
+                    L = cmToIn(L); W = cmToIn(W); H = cmToIn(H);
+                }
+
+                // Dimenzionální hmotnost v lb
+                let dimLb = 0;
+                if (L > 0 && W > 0 && H > 0) {
+                    dimLb = (L * W * H) / 139;
+                }
+
+                // Skutečná hmotnost
+                let actLb = null;
+                const actVal = parse(act.value);
+                if (actVal > 0) {
+                    actLb = actUnit.value === 'kg' ? kgToLb(actVal) : actVal;
+                }
+
+                // Výstupy – dim
+                dimLbEl.textContent = dimLb.toFixed(2);
+                dimKgEl.textContent = lbToKg(dimLb).toFixed(2);
+
+                // Výstupy – actual
+                if (actLb !== null) {
+                    actLbOut.textContent = actLb.toFixed(2) + ' lb';
+                    actKgOut.textContent = lbToKg(actLb).toFixed(2) + ' kg';
+                } else {
+                    actLbOut.textContent = '—';
+                    actKgOut.textContent = '—';
+                }
+
+                // Výstupy – billable
+                if (actLb !== null && dimLb > 0) {
+                    const billLb = Math.max(dimLb, actLb);
+                    billLbEl.textContent = billLb.toFixed(2) + ' lb';
+                    billKgEl.textContent = lbToKg(billLb).toFixed(2) + ' kg';
+                } else if (dimLb > 0) {
+                    billLbEl.textContent = dimLb.toFixed(2) + ' lb';
+                    billKgEl.textContent = lbToKg(dimLb).toFixed(2) + ' kg';
+                } else {
+                    billLbEl.textContent = '—';
+                    billKgEl.textContent = '—';
+                }
+            }
+
+            // Handlery
+            unitChips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    unitChips.forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                    dimUnit = chip.dataset.unit;
+                    updateHints();
+                    compute();
+                });
+            });
+
+            [len, wid, hei, act, actUnit].forEach(el => {
+                el.addEventListener('input', compute);
+                el.addEventListener('change', compute);
+            });
+
+            // Init
+            updateHints();
+            compute();
+        })();
+    </script>
+</body>
+</html>
