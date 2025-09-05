@@ -1260,6 +1260,7 @@ calculateBtn.addEventListener('click', function() {
     }
     
     let volumetricSea, volumetricAir, chargeable;
+    let resultUnit = unit === 'cm' ? 'kg' : 'lb';
     
     if (unit === 'cm') {
         // Convert cm to inches (1 cm = 0.393701 inches)
@@ -1275,28 +1276,35 @@ calculateBtn.addEventListener('click', function() {
         volumetricSea = volumetricSea * 0.453592;
         volumetricAir = volumetricAir * 0.453592;
     } else {
-        // Already in inches, calculate directly
+        // Already in inches, calculate directly in pounds
         volumetricSea = (length * width * height) / 139;
         volumetricAir = (length * width * height) / 169;
-        
-        // Convert to kg (1 lb = 0.453592 kg)
-        volumetricSea = volumetricSea * 0.453592;
-        volumetricAir = volumetricAir * 0.453592;
     }
     
-    // If weight was provided, convert it to kg if needed
-    let weightKg = weight;
-    if (unit === 'in') {
-        weightKg = weight * 0.453592; // Convert lb to kg
+    // If weight was provided, keep it in original units
+    let finalWeight = weight;
+    if (unit === 'cm') {
+        // Weight is already in kg, no conversion needed
+    } else {
+        // Weight is in pounds, no conversion needed
     }
     
     // Determine chargeable weight (the greater of actual or volumetric)
-    chargeable = Math.max(weightKg, Math.max(volumetricSea, volumetricAir));
+    chargeable = Math.max(finalWeight, Math.max(volumetricSea, volumetricAir));
     
-    // Display results in kg
-    document.getElementById('sea-result').textContent = volumetricSea.toFixed(2) + ' kg';
-    document.getElementById('air-result').textContent = volumetricAir.toFixed(2) + ' kg';
-    document.getElementById('chargeable-result').textContent = chargeable.toFixed(2) + ' kg';
+    // Apply minimum charge of 5 kg/lb
+    const minCharge = resultUnit === 'kg' ? 5 : 11; // 5 kg ≈ 11 lb
+    chargeable = Math.max(chargeable, minCharge);
+    
+    // Round to whole numbers
+    volumetricSea = Math.round(volumetricSea);
+    volumetricAir = Math.round(volumetricAir);
+    chargeable = Math.round(chargeable);
+    
+    // Display results with correct units
+    document.getElementById('sea-result').textContent = volumetricSea + ' ' + resultUnit;
+    document.getElementById('air-result').textContent = volumetricAir + ' ' + resultUnit;
+    document.getElementById('chargeable-result').textContent = chargeable + ' ' + resultUnit;
     
     // Show results
     document.getElementById('results').classList.add('show');
