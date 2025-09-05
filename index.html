@@ -786,4 +786,486 @@
                     </div>
                     <div class="contact-item">
                         <span class="contact-icon">🏢</span>
-                        <span data-text="contact-location">Florida, USA
+                        <span data-text="contact-location">Florida, USA</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">🤝</span>
+                        <span>Partner: Polonez</span>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3 data-text="contact-form-title">Quick Contact</h3>
+                    <input type="text" placeholder="Your Name" id="contactName">
+                    <input type="email" placeholder="Your Email" id="contactEmail">
+                    <input type="tel" placeholder="Your Phone" id="contactPhone">
+                    <textarea placeholder="Your Message" rows="4" id="contactMessage"></textarea>
+                    <button class="btn-primary" onclick="sendContactEmail()" data-text="contact-send">Send Message</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles/FAQ -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title" data-text="articles-title">Helpful Articles & FAQ</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3 data-text="article-volumetric-title">📏 How Volumetric Weight Works</h3>
+                    <p data-text="article-volumetric-content">Volumetric weight is calculated by multiplying length × width × height and dividing by a dimensional factor (139 for sea, 169 for air). The higher of actual or volumetric weight determines shipping cost.</p>
+                </div>
+                <div class="content-card">
+                    <h3 data-text="article-savings-title">💰 How to Save on Shipping</h3>
+                    <p data-text="article-savings-content">Consolidate packages, choose sea freight for non-urgent items, pack efficiently to minimize dimensions, and consider our purchase consolidation service to combine multiple orders.</p>
+                </div>
+                <div class="content-card">
+                    <h3 data-text="article-timing-title">⏰ Delivery Timeframes</h3>
+                    <p data-text="article-timing-content">Air freight: 5-10 business days. Sea freight: 3-6 weeks. Express services available. Times may vary based on customs clearance and final destination.</p>
+                </div>
+                <div class="content-card">
+                    <h3 data-text="article-tracking-title">📦 Package Tracking</h3>
+                    <p data-text="article-tracking-content">We provide tracking numbers for all shipments. You can monitor your package from our Florida facility to your doorstep in Europe through our partner network.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p data-text="footer-copyright">&copy; 2025 Shipidex. All rights reserved.</p>
+                    <p data-text="footer-legal">Terms of Service | Privacy Policy</p>
+                </div>
+                <div class="language-switcher">
+                    <select onchange="changeLanguage()" id="footerLanguageSelect">
+                        <option value="en">🇺🇸 English</option>
+                        <option value="cz">🇨🇿 Čeština</option>
+                        <option value="pl">🇵🇱 Polski</option>
+                        <option value="sk">🇸🇰 Slovenčina</option>
+                        <option value="hu">🇭🇺 Magyar</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                'services': 'Services',
+                'calculator': 'Calculator',
+                'contact': 'Contact',
+                'calculate-price': 'Calculate Price',
+                'hero-title': 'Ship Smart from USA to Europe',
+                'hero-subtitle': 'Fast, reliable shipping to Czech Republic, Poland, Slovakia & Hungary. Calculate your volumetric weight instantly.',
+                'hero-countries': '🚚 We deliver from USA to CZ, PL, SK, HU',
+                'calculate-weight': 'Calculate Ideal Weight',
+                'contact-us': 'Contact Us',
+                'services-title': 'Our Shipping Services',
+                'service-packages-title': 'Package Shipping',
+                'service-packages-desc': 'Primary service for individual packages and parcels with competitive rates and reliable delivery.',
+                'service-cars-title': 'Car Shipping',
+                'service-cars-desc': 'Professional vehicle transportation from USA to Europe with full insurance coverage.',
+                'service-containers-title': 'Full Containers',
+                'service-containers-desc': 'Complete container shipping solutions for large shipments and commercial needs.',
+                'service-consolidation-title': 'Purchase & Consolidation',
+                'service-consolidation-desc': 'We buy items for you and consolidate multiple packages to save on shipping costs.',
+                'service-air-title': 'Express Air',
+                'service-air-desc': 'Fast air freight delivery for urgent shipments that need to arrive quickly.',
+                'service-sea-title': 'Economy Sea',
+                'service-sea-desc': 'Cost-effective sea freight for non-urgent, large or heavy shipments.',
+                'calc-title': 'Volumetric Weight Calculator',
+                'calc-length': 'Length',
+                'calc-width': 'Width',
+                'calc-height': 'Height',
+                'calc-actual-weight': 'Actual Weight',
+                'calc-units': 'Units',
+                'calc-user-info': 'Your Name & Phone (Optional)',
+                'calc-volume': 'Volume:',
+                'calc-vol-weight-sea': 'Volumetric Weight (Sea /139):',
+                'calc-vol-weight-air': 'Volumetric Weight (Air /169):',
+                'calc-billable-weight': 'Billable Weight:',
+                'calc-get-quote': 'Get Quote via Email',
+                'packing-title': 'How to Pack Your Items',
+                'packing-allowed-title': '✅ What You CAN Send',
+                'packing-allowed-1': 'Electronics (phones, laptops, tablets)',
+                'packing-allowed-2': 'Clothing and shoes',
+                'packing-allowed-3': 'Books and documents',
+                'packing-allowed-4': 'Household items',
+                'packing-allowed-5': 'Cosmetics (non-liquid)',
+                'packing-allowed-6': 'Supplements and vitamins',
+                'packing-forbidden-title': '❌ What You CANNOT Send',
+                'packing-forbidden-1': 'Liquids over 100ml',
+                'packing-forbidden-2': 'Batteries (lithium)',
+                'packing-forbidden-3': 'Weapons and ammunition',
+                'packing-forbidden-4': 'Perishable foods',
+                'packing-forbidden-5': 'Cash and valuables',
+                'packing-forbidden-6': 'Hazardous materials',
+                'packing-tips-title': '💡 Packing Tips',
+                'packing-tips-1': 'Use sturdy boxes with padding',
+                'packing-tips-2': 'Wrap fragile items individually',
+                'packing-tips-3': 'Fill empty spaces to prevent movement',
+                'packing-tips-4': 'Label boxes clearly',
+                'packing-tips-5': 'Keep weight under 30kg per box',
+                'packing-tips-6': 'Include packing list inside',
+                'taxes-title': 'Import Taxes & Duties Guide',
+                'taxes-cz-title': '🇨🇿 Czech Republic',
+                'taxes-pl-title': '🇵🇱 Poland',
+                'taxes-sk-title': '🇸🇰 Slovakia',
+                'taxes-hu-title': '🇭🇺 Hungary',
+                'taxes-duty-free': 'Duty-free limit:',
+                'taxes-vat': 'VAT:',
+                'taxes-who-pays': 'Who pays:',
+                'taxes-cz-who': 'Recipient at delivery or customs clearance',
+                'taxes-pl-who': 'Recipient at delivery or customs clearance',
+                'taxes-sk-who': 'Recipient at delivery or customs clearance',
+                'taxes-hu-who': 'Recipient at delivery or customs clearance',
+                'taxes-note': '*Rates subject to change. Consult customs for current information.',
+                'gifts-title': 'Popular Gift Ideas from USA',
+                'gifts-electronics-title': '📱 Electronics',
+                'gifts-electronics-1': 'Latest iPhone models',
+                'gifts-electronics-2': 'MacBook and iPads',
+                'gifts-electronics-3': 'Gaming consoles',
+                'gifts-electronics-4': 'Smart watches',
+                'gifts-fashion-title': '👕 Fashion & Brands',
+                'gifts-fashion-1': 'Nike and Adidas sneakers',
+                'gifts-fashion-2': 'Levi\'s jeans',
+                'gifts-fashion-3': 'Designer handbags',
+                'gifts-fashion-4': 'Sports apparel',
+                'gifts-health-title': '💊 Health & Beauty',
+                'gifts-health-1': 'Premium vitamins',
+                'gifts-health-2': 'Skincare products',
+                'gifts-health-3': 'Protein supplements',
+                'gifts-health-4': 'Organic cosmetics',
+                'contact-title': 'Get in Touch',
+                'contact-location': 'Florida, USA',
+                'contact-form-title': 'Quick Contact',
+                'contact-send': 'Send Message',
+                'articles-title': 'Helpful Articles & FAQ',
+                'article-volumetric-title': '📏 How Volumetric Weight Works',
+                'article-volumetric-content': 'Volumetric weight is calculated by multiplying length × width × height and dividing by a dimensional factor (139 for sea, 169 for air). The higher of actual or volumetric weight determines shipping cost.',
+                'article-savings-title': '💰 How to Save on Shipping',
+                'article-savings-content': 'Consolidate packages, choose sea freight for non-urgent items, pack efficiently to minimize dimensions, and consider our purchase consolidation service to combine multiple orders.',
+                'article-timing-title': '⏰ Delivery Timeframes',
+                'article-timing-content': 'Air freight: 5-10 business days. Sea freight: 3-6 weeks. Express services available. Times may vary based on customs clearance and final destination.',
+                'article-tracking-title': '📦 Package Tracking',
+                'article-tracking-content': 'We provide tracking numbers for all shipments. You can monitor your package from our Florida facility to your doorstep in Europe through our partner network.',
+                'footer-copyright': '© 2025 Shipidex. All rights reserved.',
+                'footer-legal': 'Terms of Service | Privacy Policy'
+            },
+            cz: {
+                'services': 'Služby',
+                'calculator': 'Kalkulačka',
+                'contact': 'Kontakt',
+                'calculate-price': 'Spočítat cenu',
+                'hero-title': 'Chytré zásilky z USA do Evropy',
+                'hero-subtitle': 'Rychlé a spolehlivé zásilky do České republiky, Polska, Slovenska a Maďarska. Spočítejte si objemovou hmotnost okamžitě.',
+                'hero-countries': '🚚 Doručujeme z USA do CZ, PL, SK, HU',
+                'calculate-weight': 'Spočítat ideální hmotnost',
+                'contact-us': 'Kontaktujte nás',
+                'services-title': 'Naše služby přepravy',
+                'service-packages-title': 'Zasílání balíků',
+                'service-packages-desc': 'Hlavní služba pro jednotlivé balíky s konkurenčními cenami a spolehlivým doručením.',
+                'calc-title': 'Kalkulačka objemové hmotnosti',
+                'calc-length': 'Délka',
+                'calc-width': 'Šířka',
+                'calc-height': 'Výška',
+                'calc-actual-weight': 'Skutečná hmotnost',
+                'calc-units': 'Jednotky',
+                'calc-user-info': 'Vaše jméno a telefon (volitelné)',
+                'calc-volume': 'Objem:',
+                'calc-vol-weight-sea': 'Objemová hmotnost (moře /139):',
+                'calc-vol-weight-air': 'Objemová hmotnost (letecky /169):',
+                'calc-billable-weight': 'Fakturovaná hmotnost:',
+                'calc-get-quote': 'Získat nabídku e-mailem',
+                'packing-title': 'Jak zabalit své věci',
+                'contact-title': 'Kontaktujte nás',
+                'contact-location': 'Florida, USA',
+                'contact-form-title': 'Rychlý kontakt',
+                'contact-send': 'Odeslat zprávu',
+                'footer-copyright': '© 2025 Shipidex. Všechna práva vyhrazena.',
+                'footer-legal': 'Podmínky služby | Ochrana soukromí'
+            },
+            pl: {
+                'services': 'Usługi',
+                'calculator': 'Kalkulator',
+                'contact': 'Kontakt',
+                'calculate-price': 'Oblicz cenę',
+                'hero-title': 'Inteligentne wysyłki z USA do Europy',
+                'hero-subtitle': 'Szybkie i niezawodne wysyłki do Czech, Polski, Słowacji i Węgier. Oblicz wagę objętościową natychmiast.',
+                'hero-countries': '🚚 Dostarczamy z USA do CZ, PL, SK, HU',
+                'calculate-weight': 'Oblicz idealną wagę',
+                'contact-us': 'Skontaktuj się z nami',
+                'services-title': 'Nasze usługi transportowe',
+                'service-packages-title': 'Wysyłka paczek',
+                'service-packages-desc': 'Główna usługa dla pojedynczych paczek z konkurencyjnymi cenami i niezawodną dostawą.',
+                'calc-title': 'Kalkulator wagi objętościowej',
+                'calc-length': 'Długość',
+                'calc-width': 'Szerokość',
+                'calc-height': 'Wysokość',
+                'calc-actual-weight': 'Rzeczywista waga',
+                'calc-units': 'Jednostki',
+                'calc-user-info': 'Twoje imię i telefon (opcjonalne)',
+                'calc-volume': 'Objętość:',
+                'calc-vol-weight-sea': 'Waga objętościowa (morska /139):',
+                'calc-vol-weight-air': 'Waga objętościowa (lotnicza /169):',
+                'calc-billable-weight': 'Waga do rozliczenia:',
+                'calc-get-quote': 'Otrzymaj wycenę e-mailem',
+                'packing-title': 'Jak pakować swoje rzeczy',
+                'contact-title': 'Skontaktuj się z nami',
+                'contact-location': 'Floryda, USA',
+                'contact-form-title': 'Szybki kontakt',
+                'contact-send': 'Wyślij wiadomość',
+                'footer-copyright': '© 2025 Shipidex. Wszystkie prawa zastrzeżone.',
+                'footer-legal': 'Warunki usługi | Polityka prywatności'
+            },
+            sk: {
+                'services': 'Služby',
+                'calculator': 'Kalkulačka',
+                'contact': 'Kontakt',
+                'calculate-price': 'Vypočítať cenu',
+                'hero-title': 'Chytré zásielky z USA do Európy',
+                'hero-subtitle': 'Rýchle a spoľahlivé zásielky do Českej republiky, Poľska, Slovenska a Maďarska. Vypočítajte si objemovú hmotnosť okamžite.',
+                'hero-countries': '🚚 Doručujeme z USA do CZ, PL, SK, HU',
+                'calculate-weight': 'Vypočítať ideálnu hmotnosť',
+                'contact-us': 'Kontaktujte nás',
+                'services-title': 'Naše prepravné služby',
+                'service-packages-title': 'Zasielanie balíkov',
+                'service-packages-desc': 'Hlavná služba pre jednotlivé balíky s konkurenčnými cenami a spoľahlivým doručením.',
+                'calc-title': 'Kalkulačka objemovej hmotnosti',
+                'calc-length': 'Dĺžka',
+                'calc-width': 'Šírka',
+                'calc-height': 'Výška',
+                'calc-actual-weight': 'Skutočná hmotnosť',
+                'calc-units': 'Jednotky',
+                'calc-user-info': 'Vaše meno a telefón (voliteľné)',
+                'calc-volume': 'Objem:',
+                'calc-vol-weight-sea': 'Objemová hmotnosť (more /139):',
+                'calc-vol-weight-air': 'Objemová hmotnosť (letecky /169):',
+                'calc-billable-weight': 'Fakturovaná hmotnosť:',
+                'calc-get-quote': 'Získať ponuku e-mailom',
+                'packing-title': 'Ako zabaliť svoje veci',
+                'contact-title': 'Kontaktujte nás',
+                'contact-location': 'Florida, USA',
+                'contact-form-title': 'Rýchly kontakt',
+                'contact-send': 'Odoslať správu',
+                'footer-copyright': '© 2025 Shipidex. Všetky práva vyhradené.',
+                'footer-legal': 'Podmienky služby | Ochrana súkromia'
+            },
+            hu: {
+                'services': 'Szolgáltatások',
+                'calculator': 'Kalkulátor',
+                'contact': 'Kapcsolat',
+                'calculate-price': 'Ár kiszámítása',
+                'hero-title': 'Okos szállítás az USA-ból Európába',
+                'hero-subtitle': 'Gyors és megbízható szállítás Csehországba, Lengyelországba, Szlovákiába és Magyarországra. Számítsa ki a térfogatsúlyt azonnal.',
+                'hero-countries': '🚚 Az USA-ból szállítunk CZ, PL, SK, HU-ba',
+                'calculate-weight': 'Ideális súly kiszámítása',
+                'contact-us': 'Lépjen kapcsolatba',
+                'services-title': 'Szállítási szolgáltatásaink',
+                'service-packages-title': 'Csomagküldés',
+                'service-packages-desc': 'Fő szolgáltatás egyedi csomagok számára versenyképes árakkal és megbízható kézbesítéssel.',
+                'calc-title': 'Térfogatsúly kalkulátor',
+                'calc-length': 'Hossz',
+                'calc-width': 'Szélesség',
+                'calc-height': 'Magasság',
+                'calc-actual-weight': 'Tényleges súly',
+                'calc-units': 'Mértékegységek',
+                'calc-user-info': 'Az Ön neve és telefonszáma (opcionális)',
+                'calc-volume': 'Térfogat:',
+                'calc-vol-weight-sea': 'Térfogatsúly (tengeri /139):',
+                'calc-vol-weight-air': 'Térfogatsúly (légi /169):',
+                'calc-billable-weight': 'Számlázandó súly:',
+                'calc-get-quote': 'Ajánlat kérése e-mailben',
+                'packing-title': 'Hogyan csomagolja be tárgyait',
+                'contact-title': 'Lépjen kapcsolatba',
+                'contact-location': 'Florida, USA',
+                'contact-form-title': 'Gyors kapcsolat',
+                'contact-send': 'Üzenet küldése',
+                'footer-copyright': '© 2025 Shipidex. Minden jog fenntartva.',
+                'footer-legal': 'Szolgáltatási feltételek | Adatvédelmi szabályzat'
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        // Language switching function
+        function changeLanguage() {
+            const select = document.getElementById('languageSelect');
+            const footerSelect = document.getElementById('footerLanguageSelect');
+            currentLanguage = select.value;
+            footerSelect.value = currentLanguage;
+            
+            // Update all text elements
+            document.querySelectorAll('[data-text]').forEach(element => {
+                const key = element.getAttribute('data-text');
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                }
+            });
+
+            // Update HTML lang attribute
+            document.html.setAttribute('lang', currentLanguage);
+        }
+
+        // Calculator functionality
+        function calculateVolumetricWeight() {
+            const length = parseFloat(document.getElementById('length').value) || 0;
+            const width = parseFloat(document.getElementById('width').value) || 0;
+            const height = parseFloat(document.getElementById('height').value) || 0;
+            const actualWeight = parseFloat(document.getElementById('actualWeight').value) || 0;
+            const units = document.getElementById('units').value;
+
+            if (length === 0 || width === 0 || height === 0) {
+                document.getElementById('calcResults').style.display = 'none';
+                return;
+            }
+
+            let volumeCm3, actualWeightKg;
+
+            // Convert to cm and kg if needed
+            if (units === 'in-lb') {
+                volumeCm3 = (length * 2.54) * (width * 2.54) * (height * 2.54);
+                actualWeightKg = actualWeight * 0.453592;
+            } else {
+                volumeCm3 = length * width * height;
+                actualWeightKg = actualWeight;
+            }
+
+            // Calculate volumetric weights
+            const volWeightSeaKg = volumeCm3 / 139;
+            const volWeightAirKg = volumeCm3 / 169;
+
+            // Determine billable weight (higher of actual or volumetric)
+            const billableWeightSeaKg = Math.max(actualWeightKg, volWeightSeaKg);
+            const billableWeightAirKg = Math.max(actualWeightKg, volWeightAirKg);
+
+            // Display results
+            document.getElementById('volumeResult').textContent = volumeCm3.toFixed(0) + ' cm³';
+            document.getElementById('volWeightSea').textContent = volWeightSeaKg.toFixed(2) + ' kg';
+            document.getElementById('volWeightAir').textContent = volWeightAirKg.toFixed(2) + ' kg';
+            document.getElementById('billableWeight').textContent = 
+                'Sea: ' + billableWeightSeaKg.toFixed(2) + ' kg | Air: ' + billableWeightAirKg.toFixed(2) + ' kg';
+
+            document.getElementById('calcResults').style.display = 'block';
+
+            // Update mailto link
+            updateMailtoLink(length, width, height, actualWeight, units, volumeCm3, volWeightSeaKg, volWeightAirKg, billableWeightSeaKg, billableWeightAirKg);
+        }
+
+        // Update mailto link with calculation results
+        function updateMailtoLink(length, width, height, actualWeight, units, volume, volWeightSea, volWeightAir, billableWeightSea, billableWeightAir) {
+            const userInfo = document.getElementById('userInfo').value || 'Customer';
+            
+            const subject = 'Shipping Quote Request - Shipidex';
+            let body = `Hello Shipidex Team,
+
+I would like to request a shipping quote with the following package details:
+
+Package Dimensions: ${length} × ${width} × ${height} ${units.includes('in') ? 'inches' : 'cm'}
+Actual Weight: ${actualWeight} ${units.includes('lb') ? 'lbs' : 'kg'}
+Calculated Volume: ${volume.toFixed(0)} cm³
+Volumetric Weight (Sea): ${volWeightSea.toFixed(2)} kg
+Volumetric Weight (Air): ${volWeightAir.toFixed(2)} kg
+Billable Weight - Sea: ${billableWeightSea.toFixed(2)} kg
+Billable Weight - Air: ${billableWeightAir.toFixed(2)} kg
+
+Customer Information: ${userInfo}
+
+Please provide pricing for both sea and air freight options.
+
+Best regards`;
+
+            // URL encode the body
+            const encodedBody = encodeURIComponent(body);
+            const mailtoLink = `mailto:info@shipidex.com?subject=${encodeURIComponent(subject)}&body=${encodedBody}`;
+            
+            document.getElementById('mailtoBtn').href = mailtoLink;
+        }
+
+        // Contact form email function
+        function sendContactEmail() {
+            const name = document.getElementById('contactName').value || 'Customer';
+            const email = document.getElementById('contactEmail').value || '';
+            const phone = document.getElementById('contactPhone').value || '';
+            const message = document.getElementById('contactMessage').value || 'General inquiry';
+
+            const subject = 'Contact Form - Shipidex';
+            let body = `Hello Shipidex Team,
+
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+
+Message:
+${message}
+
+Please get in touch with me regarding your shipping services.
+
+Best regards,
+${name}`;
+
+            const encodedBody = encodeURIComponent(body);
+            const mailtoLink = `mailto:info@shipidex.com?subject=${encodeURIComponent(subject)}&body=${encodedBody}`;
+            
+            window.location.href = mailtoLink;
+        }
+
+        // Add event listeners for calculator inputs
+        document.addEventListener('DOMContentLoaded', function() {
+            const calcInputs = ['length', 'width', 'height', 'actualWeight', 'units'];
+            calcInputs.forEach(id => {
+                document.getElementById(id).addEventListener('input', calculateVolumetricWeight);
+                document.getElementById(id).addEventListener('change', calculateVolumetricWeight);
+            });
+
+            // Animate on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Sync language selectors
+            document.getElementById('languageSelect').addEventListener('change', function() {
+                document.getElementById('footerLanguageSelect').value = this.value;
+                changeLanguage();
+            });
+
+            document.getElementById('footerLanguageSelect').addEventListener('change', function() {
+                document.getElementById('languageSelect').value = this.value;
+                changeLanguage();
+            });
+        });
+    </script>
+</body>
+</html>
