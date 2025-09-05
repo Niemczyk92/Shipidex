@@ -1260,26 +1260,43 @@ calculateBtn.addEventListener('click', function() {
     }
     
     let volumetricSea, volumetricAir, chargeable;
-    let resultUnit = 'kg'; // Default result unit
     
     if (unit === 'cm') {
-        // Calculate in cm/kg
-        volumetricSea = (length * width * height) / 139;
-        volumetricAir = (length * width * height) / 169;
+        // Convert cm to inches (1 cm = 0.393701 inches)
+        const lengthIn = length * 0.393701;
+        const widthIn = width * 0.393701;
+        const heightIn = height * 0.393701;
+        
+        // Calculate volumetric weight in pounds
+        volumetricSea = (lengthIn * widthIn * heightIn) / 139;
+        volumetricAir = (lengthIn * widthIn * heightIn) / 169;
+        
+        // Convert back to kg (1 lb = 0.453592 kg)
+        volumetricSea = volumetricSea * 0.453592;
+        volumetricAir = volumetricAir * 0.453592;
     } else {
-        // Calculate in inches/pounds
+        // Already in inches, calculate directly
         volumetricSea = (length * width * height) / 139;
         volumetricAir = (length * width * height) / 169;
-        resultUnit = 'lb'; // Set result unit to pounds
+        
+        // Convert to kg (1 lb = 0.453592 kg)
+        volumetricSea = volumetricSea * 0.453592;
+        volumetricAir = volumetricAir * 0.453592;
+    }
+    
+    // If weight was provided, convert it to kg if needed
+    let weightKg = weight;
+    if (unit === 'in') {
+        weightKg = weight * 0.453592; // Convert lb to kg
     }
     
     // Determine chargeable weight (the greater of actual or volumetric)
-    chargeable = Math.max(weight, Math.max(volumetricSea, volumetricAir));
+    chargeable = Math.max(weightKg, Math.max(volumetricSea, volumetricAir));
     
-    // Display results
-    document.getElementById('sea-result').textContent = volumetricSea.toFixed(2) + ' ' + resultUnit;
-    document.getElementById('air-result').textContent = volumetricAir.toFixed(2) + ' ' + resultUnit;
-    document.getElementById('chargeable-result').textContent = chargeable.toFixed(2) + ' ' + resultUnit;
+    // Display results in kg
+    document.getElementById('sea-result').textContent = volumetricSea.toFixed(2) + ' kg';
+    document.getElementById('air-result').textContent = volumetricAir.toFixed(2) + ' kg';
+    document.getElementById('chargeable-result').textContent = chargeable.toFixed(2) + ' kg';
     
     // Show results
     document.getElementById('results').classList.add('show');
