@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shipidex - Your Global Shipping Partner</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <title>Shipidex - Shipping from USA to Europe | CZ, PL, SK, HU</title>
+    <meta name="description" content="Shipidex delivers from USA to Europe (CZ, PL, SK, HU). Calculate shipping costs, send packages, cars, containers. Fast and reliable shipping services.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #f59e0b;
+            --light: #f3f4f6;
+            --dark: #1f2937;
+            --success: #10b981;
+            --danger: #ef4444;
+            --gray: #6b7280;
+            --gray-light: #e5e7eb;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,630 +31,1352 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
             line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
+            background-color: var(--white);
         }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff10" points="0,1000 1000,800 1000,1000"/></svg>');
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .hero-content {
-            z-index: 2;
-            max-width: 800px;
-            padding: 0 20px;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #fff, #f0f8ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: glow 2s ease-in-out infinite alternate;
+            line-height: 1.2;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
+        h1 {
+            font-size: 2.5rem;
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
-            position: relative;
-            overflow: hidden;
+        h2 {
+            font-size: 2rem;
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.4);
+        h3 {
+            font-size: 1.5rem;
         }
 
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .container {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 0.375rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background-color: #e99a0c;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        /* Header styles */
+        .topbar {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 0.5rem 0;
+            font-size: 0.875rem;
+        }
+
+        .topbar-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #667eea;
-        }
-
-        .nav-links {
+        .topbar-contact {
             display: flex;
-            list-style: none;
-            gap: 2rem;
+            align-items: center;
+            gap: 1.5rem;
         }
 
-        .nav-links a {
+        .topbar-contact a {
+            color: var(--white);
             text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: #667eea;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #667eea;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Sections */
-        section {
-            padding: 80px 0;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 3rem;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            color: #667eea;
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        /* Tips Section */
-        .tips-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .tip-card {
-            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
-            padding: 2rem;
-            border-radius: 15px;
-            border-left: 4px solid #667eea;
-            transition: all 0.3s ease;
-        }
-
-        .tip-card:hover {
-            transform: translateX(10px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.1);
-        }
-
-        .tip-card h3 {
-            color: #667eea;
-            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        /* Contact Section */
-        .contact-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+        .topbar-contact a:hover {
+            color: var(--secondary);
+        }
+
+        .topbar-partner {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .language-switcher {
+            position: relative;
+        }
+
+        .language-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: var(--white);
+            border-radius: 0.375rem;
+            box-shadow: var(--shadow);
+            padding: 0.5rem;
+            display: none;
+            flex-direction: column;
+            min-width: 120px;
+            z-index: 10;
+        }
+
+        .language-dropdown a {
+            padding: 0.5rem;
+            text-decoration: none;
+            color: var(--dark);
+            border-radius: 0.25rem;
+        }
+
+        .language-dropdown a:hover {
+            background-color: var(--light);
+        }
+
+        .language-switcher:hover .language-dropdown {
+            display: flex;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Hero section */
+        .hero {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-heading {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .hero-subheading {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        /* Services section */
+        .services {
+            padding: 5rem 0;
+        }
+
+        .section-heading {
             text-align: center;
-            padding: 80px 20px;
-            margin: 0 -20px;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--light);
+            font-size: 3rem;
+            color: var(--primary);
+        }
+
+        .service-content {
+            padding: 1.5rem;
+        }
+
+        .service-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Calculator section */
+        .calculator {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+
+        .calculator-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .calculator-form {
+            background-color: var(--white);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--gray-light);
+            border-radius: 0.375rem;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .dimensions-inputs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .unit-toggle {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .unit-btn {
+            padding: 0.5rem 1rem;
+            background-color: var(--gray-light);
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+
+        .unit-btn.active {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .results {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: var(--light);
+            border-radius: 0.5rem;
+            display: none;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-label {
+            font-weight: 500;
+        }
+
+        /* How to pack section */
+        .how-to-pack {
+            padding: 5rem 0;
+        }
+
+        .packing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .packing-card {
+            background-color: var(--white);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .packing-list {
+            list-style-type: none;
+        }
+
+        .packing-list li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .packing-list li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .prohibited-list li::before {
+            content: '✗';
+            color: var(--danger);
+        }
+
+        /* Taxes section */
+        .taxes {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+
+        .taxes-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tax-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        .tax-table th, .tax-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .tax-table th {
+            background-color: var(--light);
+            font-weight: 600;
+        }
+
+        /* Gift ideas section */
+        .gift-ideas {
+            padding: 5rem 0;
+        }
+
+        .gift-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .gift-card {
+            background-color: var(--white);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .gift-image {
+            height: 160px;
+            background-color: var(--light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--gray);
+        }
+
+        .gift-content {
+            padding: 1.5rem;
+        }
+
+        .gift-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* FAQ section */
+        .faq {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            background-color: var(--white);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            display: none;
+        }
+
+        .faq-answer.show {
+            display: block;
+        }
+
+        /* Contact section */
+        .contact {
+            padding: 5rem 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
         }
 
         .contact-info {
             display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         .contact-item {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 1rem;
-            font-size: 1.1rem;
         }
 
-        .contact-item i {
+        .contact-icon {
             font-size: 1.5rem;
-            color: #ffd700;
+            color: var(--primary);
         }
 
-        .quote-button {
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
             display: inline-block;
-            padding: 15px 40px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
+        }
+
+        .footer-links {
+            list-style-type: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-light);
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
+            transition: var(--transition);
         }
 
-        .quote-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: translateY(-3px);
+        .footer-links a:hover {
+            color: var(--white);
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            
+            .hero-cta {
+                justify-content: center;
             }
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 20px rgba(255,255,255,0.5); }
-            to { text-shadow: 0 0 30px rgba(255,255,255,0.8); }
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero p { font-size: 1.1rem; }
-            .nav-links { display: none; }
-            .contact-info { flex-direction: column; gap: 1rem; }
-            .services-grid { grid-template-columns: 1fr; }
-            .tips-grid { grid-template-columns: 1fr; }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Particle animation */
-        .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: particle-float 15s linear infinite;
-        }
-
-        @keyframes particle-float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
+            .nav-links {
+                display: none;
             }
-            10% {
-                opacity: 1;
+            
+            .mobile-menu-btn {
+                display: block;
             }
-            90% {
-                opacity: 1;
+            
+            .topbar-content {
+                flex-direction: column;
+                gap: 0.5rem;
             }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
+            
+            .hero-heading {
+                font-size: 2.5rem;
+            }
+            
+            .dimensions-inputs {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <div class="logo">ShipIdex</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#tips">Tips</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="container topbar-content">
+            <div class="topbar-contact">
+                <a href="tel:+17542629592">
+                    <span>📞</span> +1 754 262 9592
+                </a>
+                <a href="mailto:info@shipidex.com">
+                    <span>✉️</span> info@shipidex.com
+                </a>
+            </div>
+            <div class="topbar-partner">
+                <span>Partner:</span>
+                <strong>Polonez</strong>
+            </div>
         </div>
-    </nav>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <span>🚢</span> Shipidex
+            </a>
+            
+            <nav class="nav">
+                <div class="nav-links">
+                    <a href="#services">Services</a>
+                    <a href="#calculator">Calculator</a>
+                    <a href="#how-to-pack">How to Pack</a>
+                    <a href="#taxes">Taxes & Duties</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                
+                <div class="language-switcher">
+                    <button class="language-btn">
+                        EN <span>▼</span>
+                    </button>
+                    <div class="language-dropdown">
+                        <a href="#" data-lang="en">English</a>
+                        <a href="#" data-lang="cz">Čeština</a>
+                        <a href="#" data-lang="pl">Polski</a>
+                        <a href="#" data-lang="sk">Slovenčina</a>
+                        <a href="#" data-lang="hu">Magyar</a>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-btn">☰</button>
+            </nav>
+        </div>
+    </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Shipidex</h1>
-            <p>Your trusted global shipping partner connecting USA with the world. Fast, reliable, and hassle-free shipping to Europe and beyond.</p>
-            <a href="#contact" class="cta-button">Get Free Quote</a>
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1 class="hero-heading">Shipping from USA to Europe Made Easy</h1>
+                <p class="hero-subheading">We deliver from USA to Czech Republic, Poland, Slovakia, and Hungary. Fast, reliable, and affordable shipping solutions.</p>
+                <div class="hero-cta">
+                    <a href="#calculator" class="btn">Calculate Price</a>
+                    <a href="#contact" class="btn btn-outline">Contact Us</a>
+                </div>
+                <p>Trusted by thousands of customers across Europe</p>
+            </div>
+            <div class="hero-image">
+                <img src="https://placehold.co/600x400/2563eb/ffffff?text=Shipping+Containers" alt="Shipping containers">
+            </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services">
-        <h2 class="section-title fade-in">Our Services</h2>
-        <div class="services-grid">
-            <div class="service-card fade-in">
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">Our Services</h2>
+                <p>Comprehensive shipping solutions tailored to your needs</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📦</div>
+                    <div class="service-content">
+                        <h3 class="service-title">Package Shipping</h3>
+                        <p>Send packages of any size from USA to Europe. Door-to-door delivery with tracking.</p>
+                    </div>
+                </div>
                 
-                <h3>Package Shipping</h3>
-                <p>Fast and secure package delivery from USA to Poland, Slovakia, Czech Republic, Hungary, and worldwide. Choose between express air delivery or economical sea freight options.</p>
-            </div>
-            <div class="service-card fade-in">
-
-                <h3>Vehicle Transport</h3>
-                <p>Professional car shipping services with complete handling of all paperwork, customs, and tax obligations. Safe transport across oceans.</p>
-            </div>
-            <div class="service-card fade-in">
-
-                <h3>Moving Services</h3>
-                <p>Complete relocation services including packing, shipping, and handling all legal formalities and tax requirements for international moves.</p>
-            </div>
-            <div class="service-card fade-in">
-
-                <h3>Shop & Ship</h3>
-                <p>Shop online and have items delivered to our US address. We consolidate multiple packages and ship them efficiently to Europe, saving you money.</p>
-            </div>
-            <div class="service-card fade-in">
-
-                <h3>Tax & Customs</h3>
-                <p>Full assistance with customs declarations, tax calculations, and all required documentation for international shipments.</p>
-            </div>
-            <div class="service-card fade-in">
-
-                <h3>Package Consolidation</h3>
-                <p>Combine multiple purchases into one shipment to Europe. Save on shipping costs while ensuring your items arrive together safely.</p>
+                <div class="service-card">
+                    <div class="service-icon">🚗</div>
+                    <div class="service-content">
+                        <h3 class="service-title">Car Shipping</h3>
+                        <p>Import your vehicle from USA to Europe. We handle all paperwork and logistics.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📦</div>
+                    <div class="service-content">
+                        <h3 class="service-title">Full Containers</h3>
+                        <p>Ideal for large shipments. Secure and cost-effective for moving or business needs.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🛒</div>
+                    <div class="service-content">
+                        <h3 class="service-title">Purchase & Consolidation</h3>
+                        <p>We buy and consolidate items for you, then ship everything together to save costs.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">✈️</div>
+                    <div class="service-content">
+                        <h3 class="service-title">Express Air Freight</h3>
+                        <p>Fast delivery by air. Perfect for urgent shipments and time-sensitive goods.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🚢</div>
+                    <div class="service-content">
+                        <h3 class="service-title">Sea Freight</h3>
+                        <p>Economical shipping by sea. Best for large, non-urgent shipments.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Tips Section -->
-    <section id="tips">
-        <h2 class="section-title fade-in">Shipping Tips & Information</h2>
-        <div class="tips-grid">
-            <div class="tip-card fade-in">
-                <h3></i> How to Pack Safely</h3>
-                <ul>
-                    <li>Use sturdy boxes with proper cushioning material</li>
-                    <li>Wrap fragile items individually in bubble wrap</li>
-                    <li>Fill empty spaces to prevent items from shifting</li>
-                    <li>Seal boxes with strong packing tape</li>
-                    <li>Label clearly with recipient and sender information</li>
-                    <li>Include packing list inside the box</li>
-                </ul>
+    <!-- Calculator Section -->
+    <section class="calculator" id="calculator">
+        <div class="container calculator-container">
+            <div class="section-heading">
+                <h2 class="section-title">Volumetric Calculator</h2>
+                <p>Calculate the volumetric weight of your shipment</p>
             </div>
-            <div class="tip-card fade-in">
-                <h3><i class="fas fa-gift"></i> Best Gifts from USA to Europe</h3>
-                <ul>
-                    <li>American candy and snacks (Reese's, Pop-Tarts)</li>
-                    <li>Brand clothing and shoes (Nike, Levi's)</li>
-                    <li>Electronics and gadgets</li>
-                    <li>Vitamins and supplements</li>
-                    <li>Local crafts and souvenirs</li>
-                    <li>Books and magazines in English</li>
-                    <li>American coffee and specialty foods</li>
-                </ul>
+            
+            <div class="calculator-form">
+                <div class="unit-toggle">
+                    <button class="unit-btn active" data-unit="cm">cm/kg</button>
+                    <button class="unit-btn" data-unit="in">in/lb</button>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Dimensions</label>
+                    <div class="dimensions-inputs">
+                        <input type="number" id="length" class="form-input" placeholder="Length" min="1">
+                        <input type="number" id="width" class="form-input" placeholder="Width" min="1">
+                        <input type="number" id="height" class="form-input" placeholder="Height" min="1">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="weight" class="form-label">Actual Weight (optional)</label>
+                    <input type="number" id="weight" class="form-input" placeholder="Weight" min="0">
+                </div>
+                
+                <button id="calculate-btn" class="btn">Calculate</button>
+                
+                <div class="results" id="results">
+                    <h3>Calculation Results</h3>
+                    <div class="result-item">
+                        <span class="result-label">Volumetric Weight (Sea):</span>
+                        <span id="sea-result">0 kg</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Volumetric Weight (Air):</span>
+                        <span id="air-result">0 kg</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Chargeable Weight:</span>
+                        <span id="chargeable-result">0 kg</span>
+                    </div>
+                    
+                    <button id="contact-btn" class="btn btn-secondary" style="margin-top: 1rem;">Contact for Exact Quote</button>
+                </div>
             </div>
-            <div class="tip-card fade-in">
-                <h3></i> Customs & Tax Information</h3>
-                <ul>
-                    <li>EU: Gifts under €45 are duty-free</li>
-                    <li>Commercial goods: 19-27% VAT applies</li>
-                    <li>Always declare true value on customs forms</li>
-                    <li>Keep receipts for all items shipped</li>
-                    <li>Some items may require special permits</li>
-                    <li>Prohibited items: liquids, batteries, food products</li>
-                </ul>
+        </div>
+    </section>
+
+    <!-- How to Pack Section -->
+    <section class="how-to-pack" id="how-to-pack">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">How to Pack</h2>
+                <p>Guidelines for proper packaging and prohibited items</p>
             </div>
-            <div class="tip-card fade-in">
-                <h3></i> Shipping Times & Options</h3>
-                <ul>
-                    <li>Express Air: 3-7 business days</li>
-                    <li>Standard Air: 7-14 business days</li>
-                    <li>Economy Sea: 4-8 weeks</li>
-                    <li>Tracking available for all shipments</li>
-                    <li>Insurance options available</li>
-                    <li>Delivery confirmation required</li>
-                </ul>
+            
+            <div class="packing-grid">
+                <div class="packing-card">
+                    <h3>Recommended Packing</h3>
+                    <ul class="packing-list">
+                        <li>Use sturdy, double-wall corrugated cardboard boxes</li>
+                        <li>Wrap items individually with bubble wrap</li>
+                        <li>Use adequate cushioning material (foam, packing peanuts)</li>
+                        <li>Seal boxes with strong packing tape</li>
+                        <li>Label boxes clearly with contents and handling instructions</li>
+                        <li>Keep weight under 30kg per box for easy handling</li>
+                    </ul>
+                </div>
+                
+                <div class="packing-card">
+                    <h3>Prohibited Items</h3>
+                    <ul class="packing-list prohibited-list">
+                        <li>Weapons and ammunition</li>
+                        <li>Flammable liquids and gases</li>
+                        <li>Toxic and hazardous materials</li>
+                        <li>Perishable food items</li>
+                        <li>Plants and seeds without proper documentation</li>
+                        <li>Counterfeit goods and illegal items</li>
+                        <li>Batteries without proper packaging</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Taxes & Duties Section -->
+    <section class="taxes" id="taxes">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">Import Taxes & Duties</h2>
+                <p>Important information about customs procedures and fees</p>
+            </div>
+            
+            <div class="taxes-content">
+                <p>When shipping from USA to Europe, your goods may be subject to import taxes, customs duties, and other fees. These are determined by the destination country based on the type of goods, their value, and country of origin.</p>
+                
+                <h3>Key Information by Country:</h3>
+                
+                <table class="tax-table">
+                    <thead>
+                        <tr>
+                            <th>Country</th>
+                            <th>Tax-Free Limit</th>
+                            <th>VAT Rate</th>
+                            <th>Customs Duty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Czech Republic</td>
+                            <td>150 EUR</td>
+                            <td>21%</td>
+                            <td>0-17% based on product type</td>
+                        </tr>
+                        <tr>
+                            <td>Poland</td>
+                            <td>150 EUR</td>
+                            <td>23%</td>
+                            <td>0-20% based on product type</td>
+                        </tr>
+                        <tr>
+                            <td>Slovakia</td>
+                            <td>150 EUR</td>
+                            <td>20%</td>
+                            <td>0-17% based on product type</td>
+                        </tr>
+                        <tr>
+                            <td>Hungary</td>
+                            <td>150 EUR</td>
+                            <td>27%</td>
+                            <td>0-17% based on product type</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p><strong>Note:</strong> The recipient is typically responsible for paying all import taxes and duties. Rates may change, so always check with local customs for the most current information.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gift Ideas Section -->
+    <section class="gift-ideas">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">Popular Gift Ideas from USA</h2>
+                <p>What Europeans love to order from America</p>
+            </div>
+            
+            <div class="gift-grid">
+                <div class="gift-card">
+                    <div class="gift-image">📱</div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Electronics & Gadgets</h3>
+                        <p>American prices on electronics are often significantly lower than in Europe.</p>
+                    </div>
+                </div>
+                
+                <div class="gift-card">
+                    <div class="gift-image">👕</div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Brand Clothing</h3>
+                        <p>American brands like Levi's, Nike, and Tommy Hilfiger are popular.</p>
+                    </div>
+                </div>
+                
+                <div class="gift-card">
+                    <div class="gift-image">💄</div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Cosmetics</h3>
+                        <p>US-exclusive makeup and skincare products are highly sought after.</p>
+                    </div>
+                </div>
+                
+                <div class="gift-card">
+                    <div class="gift-image">🎮</div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Video Games & Collectibles</h3>
+                        <p>Special editions and collectibles often launch first in the US.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p>Find answers to common questions about our shipping services</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How long does shipping from USA to Europe take? <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sea freight typically takes 4-6 weeks, while air freight takes 1-2 weeks. These times include customs clearance and final delivery to your address.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How is volumetric weight calculated? <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Volumetric weight is calculated by multiplying the length, width, and height of your package (in cm) and dividing by a volumetric factor. For sea freight we use /139, for air freight we use /169.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you provide packaging materials? <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we can provide packaging materials for an additional fee. Alternatively, you can use your own packaging as long as it meets our requirements.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I track my shipment? <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we provide tracking numbers for all shipments. You can track your package through our website or via email updates.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What happens if my package gets damaged? <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer insurance options for all shipments. In case of damage, please contact us immediately with photos of the damage and packaging for us to process your claim.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <h2 class="section-title">Get Your Free Quote Today</h2>
-        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Contact us for a personalized shipping solution tailored to your needs</p>
-        
-        <div class="contact-info">
-            <div class="contact-item">
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">Contact Us</h2>
+                <p>Get in touch with our shipping experts</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@shipidex.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+1 754 262 9592</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🏢</div>
+                        <div>
+                            <h3>Location</h3>
+                            <p>Florida, USA</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🤝</div>
+                        <div>
+                            <h3>Partner</h3>
+                            <p>Polonez</p>
+                        </div>
+                    </div>
+                </div>
                 
-                <span>+1 954 203 0194</span>
+                <form class="contact-form" id="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" class="form-input" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" id="subject" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" class="form-input" rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
             </div>
-            <div class="contact-item">
-                <span>info@shipidex.com</span>
-            </div>
-        </div>
-        
-        <a href="#" class="quote-button" id="quoteBtn">Request Free Quote</a>
-        
-        <div style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
-            <p>Available Monday - Friday: 9:00 AM - 6:00 PM EST</p>
-            <p>Emergency shipments: 24/7 support available</p>
         </div>
     </section>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#" class="footer-logo">Shipidex</a>
+                    <p>Shipping from USA to Europe made simple, reliable, and affordable.</p>
+                </div>
+                
+                <div>
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Package Shipping</a></li>
+                        <li><a href="#">Car Shipping</a></li>
+                        <li><a href="#">Containers</a></li>
+                        <li><a href="#">Purchase & Consolidation</a></li>
+                        <li><a href="#">Air Freight</a></li>
+                        <li><a href="#">Sea Freight</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3>Information</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">How to Pack</a></li>
+                        <li><a href="#">Taxes & Duties</a></li>
+                        <li><a href="#">Prohibited Items</a></li>
+                        <li><a href="#">Gift Ideas</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:info@shipidex.com">info@shipidex.com</a></li>
+                        <li><a href="tel:+17542629592">+1 754 262 9592</a></li>
+                        <li><a href="#">Florida, USA</a></li>
+                        <li>Partner: Polonez</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Shipidex. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+        document.addEventListener('DOMContentLoaded', function() {
+            // Language switcher
+            const langButtons = document.querySelectorAll('.language-dropdown a');
+            langButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('data-lang');
+                    document.querySelector('.language-btn').textContent = this.textContent + ' ▼';
+                    // In a real implementation, this would change the page content
+                    alert('Language changed to: ' + lang);
                 });
             });
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Fade in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Particle animation
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            particle.style.left = Math.random() * 100 + 'vw';
-            particle.style.width = particle.style.height = Math.random() * 10 + 5 + 'px';
-            particle.style.animationDuration = Math.random() * 10 + 10 + 's';
-            document.querySelector('.hero').appendChild(particle);
-
-            setTimeout(() => {
-                particle.remove();
-            }, 15000);
-        }
-
-        // Create particles periodically
-        setInterval(createParticle, 2000);
-
-        // Quote button functionality
-        document.getElementById('quoteBtn').addEventListener('click', function(e) {
-            e.preventDefault();
             
-            const subject = encodeURIComponent('Free Shipping Quote Request - ShipIdex');
-            const body = encodeURIComponent(`Hello ShipIdex Team,
-
-I would like to request a free quote for shipping services. Please find my details below:
-
-PACKAGE INFORMATION:
-- Weight: [Please specify in lbs/kg]
-- Dimensions: [Length x Width x Height in inches/cm]
-- Contents: [Brief description of items]
-- Destination: [Country/City]
-- Preferred shipping method: [Air Express / Standard Air / Economy Sea]
-- Drop-off preference: [Boynton Beach, FL location / Pickup service]
-
-CONTACT INFORMATION:
-- Name: [Your full name]
-- Phone: [Your phone number]
-- Email: [Your email address]
-- Pickup Address: [Full address in USA if pickup needed]
-- Delivery Address: [Full address in destination country]
-
-ADDITIONAL SERVICES NEEDED:
-□ Package consolidation
-□ Insurance
-□ Customs assistance
-□ Tax calculation help
-□ Other: [Please specify]
-
-Thank you for your time. I look forward to hearing from you soon.
-
-Best regards,
-[Your Name]`);
-
-            window.location.href = `mailto:info@shipidex.com?subject=${subject}&body=${body}`;
-        });
-
-        // Add some interactive hover effects
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.background = 'linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%)';
+            // Unit toggle for calculator
+            const unitButtons = document.querySelectorAll('.unit-btn');
+            unitButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    unitButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const unit = this.getAttribute('data-unit');
+                    const dimensionsInputs = document.querySelectorAll('.dimensions-inputs input');
+                    const weightInput = document.getElementById('weight');
+                    
+                    if (unit === 'cm') {
+                        dimensionsInputs.forEach(input => {
+                            input.placeholder = input.placeholder.replace('in', 'cm');
+                        });
+                        weightInput.placeholder = 'Weight (kg)';
+                    } else {
+                        dimensionsInputs.forEach(input => {
+                            input.placeholder = input.placeholder.replace('cm', 'in');
+                        });
+                        weightInput.placeholder = 'Weight (lb)';
+                    }
+                });
             });
             
-            card.addEventListener('mouseleave', function() {
-                this.style.background = 'white';
-            });
-        });
-
-        // Dynamic title animation
-        const title = document.querySelector('.hero h1');
-        const text = title.textContent;
-        title.textContent = '';
+            // Calculator functionality
+            const calculateBtn = document.getElementById('calculate-btn');
+calculateBtn.addEventListener('click', function() {
+    const unit = document.querySelector('.unit-btn.active').getAttribute('data-unit');
+    const length = parseFloat(document.getElementById('length').value) || 0;
+    const width = parseFloat(document.getElementById('width').value) || 0;
+    const height = parseFloat(document.getElementById('height').value) || 0;
+    const weight = parseFloat(document.getElementById('weight').value) || 0;
+    
+    if (length <= 0 || width <= 0 || height <= 0) {
+        alert('Please enter valid dimensions');
+        return;
+    }
+    
+    let volumetricSea, volumetricAir, chargeable;
+    let resultUnit = unit === 'cm' ? 'kg' : 'lb';
+    
+    if (unit === 'cm') {
+        // Convert cm to inches (1 cm = 0.393701 inches)
+        const lengthIn = length * 0.393701;
+        const widthIn = width * 0.393701;
+        const heightIn = height * 0.393701;
         
-        for (let i = 0; i < text.length; i++) {
-            const span = document.createElement('span');
-            span.textContent = text[i];
-            span.style.animationDelay = `${i * 0.1}s`;
-            span.style.display = 'inline-block';
-            span.style.animation = 'fadeInUp 0.5s ease forwards';
-            span.style.opacity = '0';
-            title.appendChild(span);
-        }
+        // Calculate volumetric weight in pounds
+        volumetricSea = (lengthIn * widthIn * heightIn) / 139;
+        volumetricAir = (lengthIn * widthIn * heightIn) / 169;
+        
+        // Convert back to kg (1 lb = 0.453592 kg)
+        volumetricSea = volumetricSea * 0.453592;
+        volumetricAir = volumetricAir * 0.453592;
+    } else {
+        // Already in inches, calculate directly in pounds
+        volumetricSea = (length * width * height) / 139;
+        volumetricAir = (length * width * height) / 169;
+    }
+    
+    // If weight was provided, keep it in original units
+    let finalWeight = weight;
+    if (unit === 'cm') {
+        // Weight is already in kg, no conversion needed
+    } else {
+        // Weight is in pounds, no conversion needed
+    }
+    
+    // Determine chargeable weight (the greater of actual or volumetric)
+    chargeable = Math.max(finalWeight, Math.max(volumetricSea, volumetricAir));
+    
+    // Apply minimum charge of 5 kg/lb
+    const minCharge = resultUnit === 'kg' ? 5 : 11; // 5 kg ≈ 11 lb
+    chargeable = Math.max(chargeable, minCharge);
+    
+    // Round to whole numbers
+    volumetricSea = Math.round(volumetricSea);
+    volumetricAir = Math.round(volumetricAir);
+    chargeable = Math.round(chargeable);
+    
+    // Display results with correct units
+    document.getElementById('sea-result').textContent = volumetricSea + ' ' + resultUnit;
+    document.getElementById('air-result').textContent = volumetricAir + ' ' + resultUnit;
+    document.getElementById('chargeable-result').textContent = chargeable + ' ' + resultUnit;
+    
+    // Show results
+    document.getElementById('results').classList.add('show');
+});
+            
+            // Contact button in calculator
+            const contactBtn = document.getElementById('contact-btn');
+            contactBtn.addEventListener('click', function() {
+                const length = document.getElementById('length').value || 'N/A';
+                const width = document.getElementById('width').value || 'N/A';
+                const height = document.getElementById('height').value || 'N/A';
+                const weight = document.getElementById('weight').value || 'N/A';
+                const unit = document.querySelector('.unit-btn.active').getAttribute('data-unit');
+                
+                const subject = 'Shipping Quote Request';
+                const body = `Hello Shipidex,\n\nI would like to request a shipping quote for a package with the following dimensions:\n\nLength: ${length} ${unit === 'cm' ? 'cm' : 'in'}\nWidth: ${width} ${unit === 'cm' ? 'cm' : 'in'}\nHeight: ${height} ${unit === 'cm' ? 'cm' : 'in'}\nWeight: ${weight} ${unit === 'cm' ? 'kg' : 'lb'}\n\nPlease provide me with a detailed quote. Thank you!`;
+                
+                window.location.href = `mailto:info@shipidex.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            });
+            
+            // FAQ accordion
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const isVisible = answer.classList.contains('show');
+                    
+                    // Close all answers
+                    document.querySelectorAll('.faq-answer').forEach(ans => {
+                        ans.classList.remove('show');
+                    });
+                    
+                    document.querySelectorAll('.faq-question span').forEach(span => {
+                        span.textContent = '+';
+                    });
+                    
+                    // Open this answer if it was closed
+                    if (!isVisible) {
+                        answer.classList.add('show');
+                        this.querySelector('span').textContent = '−';
+                    }
+                });
+            });
+            
+            // Contact form submission
+            const contactForm = document.getElementById('contact-form');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                
+                const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+                
+                window.location.href = `mailto:info@shipidex.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                
+                // Reset form
+                contactForm.reset();
+                
+                alert('Thank you for your message! We will get back to you soon.');
+            });
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            });
+        });
     </script>
 </body>
 </html>
